@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WebSockets Test Page</title>
+    <script type="text/javascript">
+
+var url = "ws://localhost:8080/echo";
+var protocol = "echo";
+var socket;
+
+function ToggleSocket()
+{
+    if (socket == null || socket.readyState == socket.CLOSED)
+    {
+        socket = new WebSocket(url, protocol);
+        socket.onmessage = function (message)
+        {
+            outputBox.textContent += message.data + "\n";
+        }
+        toggleButton.value = "Close";
+        sendButton.disabled = false;
+        socketStatus.textContent = "OPEN";
+    }
+    else if (socket.readyState == socket.OPEN)
+    {
+        socket.close();
+        toggleButton.value = "Open";
+        sendButton.disabled = true;
+        socketStatus.textContent = "CLOSED";
+    }
+}
+
+function Send()
+{
+    socket.send(inputBox.value);
+}
+
+    </script>
+</head>
+<body>
+    <h1>Test Page</h1>
+    Input: <input type="text" id="inputBox" /><br />
+    Output: <textarea id="outputBox" rows="25" cols="80"></textarea><br />
+    <br />
+    Socket is <span id="socketStatus">CLOSED</span><br />
+    <br />
+    <input type="button" id="toggleButton" value="Open" onclick="ToggleSocket();" />
+    <input type="button" id="sendButton" value="Send" onclick="Send();" disabled="disabled" />
+</body>
+</html>

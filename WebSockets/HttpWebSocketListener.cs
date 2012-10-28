@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -42,19 +43,13 @@ namespace WebSockets
 
 		private async void ContextHandler(HttpListenerContext context)
 		{
-			if (IsWebSocketRequest(context.Request))
+			var request = context.Request;
+			Console.WriteLine("{0} {1} {2}", request.RemoteEndPoint.Address, request.HttpMethod, request.Url);
+
+			if (request.IsWebSocketRequest)
 				webSocketServer.HandleContext(await context.AcceptWebSocketAsync(webSocketServer.Protocol));
 			else
 				httpServer.HandleContext(context);
-		}
-
-		private static bool IsWebSocketRequest(HttpListenerRequest request)
-		{
-			var scheme = request.Url.Scheme;
-			var upgradeValues = request.Headers.GetValues("Upgrade");
-			var connectionValues = request.Headers.GetValues("Connection");
-
-			return (scheme == "ws" || scheme == "wss") && connectionValues.Contains("Upgrade") && upgradeValues.Contains("websocket");
 		}
 	}
 }
