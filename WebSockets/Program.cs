@@ -1,4 +1,6 @@
-﻿namespace WebSockets
+﻿using System.Threading.Tasks;
+
+namespace WebSockets
 {
 	class Program
 	{
@@ -7,7 +9,8 @@
 			var httpServer = new HelloWorldServer();
 			var webSocketServer = new EchoSocket();
 			var listener = new HttpWebSocketListener(httpServer, webSocketServer);
-			listener.Run();
+			
+			Task.Factory.StartNew(() => listener.Run()).Wait();
 		}
 	}
 }

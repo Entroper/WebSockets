@@ -23,7 +23,7 @@ namespace WebSockets
 			listener.Prefixes.Add("http://*:8080/");
 		}
 
-		public void Run()
+		public async void Run()
 		{
 			listener.Start();
 
@@ -31,7 +31,7 @@ namespace WebSockets
 
 			while (IsRunning)
 			{
-				var context = listener.GetContext();
+				var context = await listener.GetContextAsync();
 				Task.Factory.StartNew(() => ContextHandler(context));
 			}
 		}
@@ -39,6 +39,7 @@ namespace WebSockets
 		public void Stop()
 		{
 			IsRunning = false;
+			listener.Stop(); // Need to test whether this cancels GetContextAsync!
 		}
 
 		private async void ContextHandler(HttpListenerContext context)
