@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using WebSocketListener;
 
 namespace WebSocketApplication
@@ -11,7 +13,9 @@ namespace WebSocketApplication
 			var webSocketServer = new EchoSocket();
 			var listener = new HttpWebSocketListener(httpServer, webSocketServer);
 
-			Task.Factory.StartNew(() => listener.Run()).Wait();
+			Task.Factory.StartNew(() => listener.Run());
+
+			Console.ReadKey();
 		}
 	}
 }
