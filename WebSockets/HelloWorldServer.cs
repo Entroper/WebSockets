@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Text;
 
-namespace WebSockets
+namespace WebSocketListener
 {
-	class HelloWorldServer : IHttpServer
+	public class HelloWorldServer : IHttpServer
 	{
 		public async void HandleContext(HttpListenerContext context)
 		{

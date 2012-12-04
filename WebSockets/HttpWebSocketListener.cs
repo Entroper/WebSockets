@@ -3,9 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace WebSockets
+namespace WebSocketListener
 {
-	class HttpWebSocketListener
+	public class HttpWebSocketListener
 	{
 		IHttpServer httpServer;
 		IWebSocketServer webSocketServer;

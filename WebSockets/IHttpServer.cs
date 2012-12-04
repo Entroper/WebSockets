@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace WebSockets
+namespace WebSocketListener
 {
-	interface IHttpServer
+	public interface IHttpServer
 	{
 		void HandleContext(HttpListenerContext context);
 	}

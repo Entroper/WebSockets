@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D91FA4B-2044-4B41-858A-7A00C8BC18CD}</ProjectGuid>
+    <ProjectGuid>{322DD10F-D4DC-460D-BFA9-9507E6FDC290}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebSockets</RootNamespace>
-    <AssemblyName>WebSockets</AssemblyName>
+    <RootNamespace>WebSocketApplication</RootNamespace>
+    <AssemblyName>WebSocketApplication</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,11 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EchoSocket.cs" />
-    <Compile Include="HelloWorldServer.cs" />
-    <Compile Include="HttpWebSocketListener.cs" />
-    <Compile Include="IHttpServer.cs" />
-    <Compile Include="IWebSocketServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,7 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestPage.html" />
+    <ProjectReference Include="..\WebSockets\WebSocketListener.csproj">
+      <Project>{0d91fa4b-2044-4b41-858a-7a00c8bc18cd}</Project>
+      <Name>WebSocketListener</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

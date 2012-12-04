@@ -2,9 +2,9 @@
 using System.Net.WebSockets;
 using System.Threading;
 
-namespace WebSockets
+namespace WebSocketListener
 {
-	class EchoSocket : IWebSocketServer
+	public class EchoSocket : IWebSocketServer
 	{
 		public string Protocol
 		{

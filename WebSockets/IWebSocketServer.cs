@@ -1,8 +1,8 @@
 ﻿using System.Net.WebSockets;
 
-namespace WebSockets
+namespace WebSocketListener
 {
-	interface IWebSocketServer
+	public interface IWebSocketServer
 	{
 		string Protocol { get; }
 

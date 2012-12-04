@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using WebSocketListener;
 
-namespace WebSockets
+namespace WebSocketApplication
 {
 	class Program
 	{
@@ -9,7 +10,7 @@ namespace WebSockets
 			var httpServer = new HelloWorldServer();
 			var webSocketServer = new EchoSocket();
 			var listener = new HttpWebSocketListener(httpServer, webSocketServer);
-			
+
 			Task.Factory.StartNew(() => listener.Run()).Wait();
 		}
 	}
